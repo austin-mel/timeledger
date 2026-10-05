@@ -24,7 +24,7 @@ withDefaults(
   >
     <div
       aria-hidden="true"
-      class="mb-3.5 h-[3px] w-6 rounded-sm"
+      class="mb-3.5 h-[5px] w-6 rounded-sm"
       :class="{
         'bg-forest-green': variant === 'default',
         'bg-burnt-copper': variant === 'copper',

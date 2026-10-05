@@ -49,8 +49,11 @@ const combinedExposureCard = {
   <main class="mx-auto w-full max-w-[1560px] flex-1 px-5 pt-7 pb-8 sm:px-10 sm:pt-9">
     <header class="mb-[25px] flex flex-col items-start gap-5 min-[901px]:flex-row min-[901px]:items-center min-[901px]:justify-between min-[901px]:gap-8">
       <div>
-        <h1 class="text-[1.2rem] mb-4 font-extrabold tracking-[0.14em] text-forest-green uppercase">
-          Summary Dashboard
+        <h1 class="text-[0.9rem] font-extrabold tracking-[0.14em] text-forest-green uppercase">
+          Executive Summary
+        </h1>
+        <h1 class="text-[2rem] mb-4 font-extrabold tracking-[0.14em] uppercase text-ink">
+          Cost Review Dashboard
         </h1>
         <p class="max-w-[780px] text-[0.82rem] leading-[1.7] text-slate-green sm:text-[0.9rem]">
           A unified view of meal-period and location-based punch exceptions, designed to turn audit
