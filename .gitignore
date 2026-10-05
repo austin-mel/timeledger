@@ -1,39 +1,146 @@
-# Logs
-logs
+# Dependencies and package-manager caches (keep manifests and lockfiles)
+node_modules/
+.pnpm-store/
+.npm/
+
+# TypeScript, Vue, Vite, and generated application output
+dist/
+dist-ssr/
+build/
+.output/
+.nuxt/
+*.tsbuildinfo
+*.timestamp-*.mjs
+*.timestamp-*.js
+.vite/
+.vite-temp/
+.vitepress/cache/
+.vitepress/dist/
+.vuepress/.cache/
+.vuepress/.temp/
+.vuepress/dist/
+
+# Tool caches
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# Local environment and configuration; commit only sanitized templates
+.env
+.env.*
+.envrc
+*.local
+!.env.example
+!.env.sample
+!.env.template
+!.env.*.example
+!.env.*.sample
+!.env.*.template
+
+# Private credentials, keys, and local administrative state
+.secrets/
+/secrets/
+.private/
+/private/
+credentials.json
+credentials.*.json
+service-account*.json
+*-service-account*.json
+*-firebase-adminsdk-*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+.ssh/
+.gnupg/
+.aws/
+.azure/
+.gcloud/
+.config/gcloud/
+.kube/
+.docker/config.json
+.vercel/
+.netlify/
+.wrangler/
+.firebase/
+/uploads/
+/backups/
+
+# Logs, process files, and temporary output
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+*.pid
+*.pid.lock
+*.tmp
+*.temp
+*.bak
+*.orig
+/tmp/
+/temp/
 
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
+# Playwright reports, recordings, traces, and authenticated browser state
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+.playwright-cli/
+/output/playwright/
+.auth/
+storage-state*.json
+storageState*.json
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Vitest / coverage artifacts (including older reporter output locations)
+coverage/
+.nyc_output/
+.vitest/
+.vitest-reports/
+.vitest-attachments/
+vitest-report/
+/html/
+__diff_output__/
+# Keep test source, fixtures, *.snap, __snapshots__, __screenshots__,
+# and Playwright *-snapshots directories tracked as expected baselines.
 
-*.tsbuildinfo
-
-.eslintcache
-
-# Cypress
+# Cypress generated media
 /cypress/videos/
 /cypress/screenshots/
 
-# Vitest
-__screenshots__/
+# Local editor state; retain the shared VS Code extension recommendations
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.ntvs*
+*.swp
+*.swo
+*~
 
-# Vite
-*.timestamp-*-*.mjs
+# Operating-system metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100/
+.Trashes/
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
