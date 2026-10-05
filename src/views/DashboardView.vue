@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SvgIcon } from '../assets'
 import AppHeader from '../components/AppHeader.vue'
 import QuickViewCard from '../components/QuickViewCard.vue'
 
@@ -59,8 +60,9 @@ const combinedExposureCard = {
       <div class="flex w-full flex-col items-start gap-5 sm:w-auto sm:shrink-0 sm:flex-row sm:items-center sm:gap-6">
         <button
           type="button"
-          class="min-h-18 w-full uppercase cursor-pointer rounded-lg bg-forest-green px-6 py-4 text-base font-semibold whitespace-nowrap text-lavender-mist shadow-sm shadow-deep-pine/10 hover:bg-deep-pine focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-green motion-safe:transition-colors sm:w-auto"
+          class="inline-flex min-h-18 w-full items-center justify-center gap-2 uppercase cursor-pointer rounded-lg bg-forest-green px-6 py-4 text-base font-semibold whitespace-nowrap text-lavender-mist shadow-sm shadow-deep-pine/10 hover:bg-deep-pine focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-green motion-safe:transition-colors sm:w-auto"
         >
+          <SvgIcon name="uploadFile" class="size-6" />
           Upload audit file
         </button>
         <div class="shrink-0 border-l-[3px] border-forest-green py-1 pl-[18px] text-xs leading-[1.8] text-slate-green">
