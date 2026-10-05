@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { SvgIcon } from '../assets'
-import timeledgerLogo from '../assets/timeledger-logo.svg'
+import { SvgIcon, TimeledgerLogo } from '@/assets'
 
 const route = useRoute()
 const router = useRouter()
@@ -11,7 +10,7 @@ const router = useRouter()
   <header class="mx-auto w-full max-w-[1560px] px-5 sm:px-10">
     <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b-[3px] border-forest-green py-6">
       <img
-        :src="timeledgerLogo"
+        :src="TimeledgerLogo"
         alt="timeledger"
         width="144"
         height="28"

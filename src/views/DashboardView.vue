@@ -1,47 +1,79 @@
 <script setup lang="ts">
-import { SvgIcon } from '../assets'
-import AppHeader from '../components/AppHeader.vue'
-import QuickViewCard from '../components/QuickViewCard.vue'
+import { SvgIcon } from '@/assets'
+import { AppHeader, DashboardPanel, QuickViewCard } from '@/components'
 
-// Display values from the supplied reference until dashboard data is connected.
+// Example values randomized once for the dashboard mockup.
 const quickViewCards = [
   {
     label: 'Meal-period exceptions',
-    value: 23,
+    value: 26,
     description: 'meal-period violations',
-    note: '9 unique employees',
+    note: '16 unique employees',
     variant: 'copper',
   },
   {
     label: 'Meal-period exposure',
-    value: '$1,153.81',
+    value: '$1,726.65',
     description: 'annualized labor cost projection',
-    note: '$569.00 current observed labor cost',
+    note: '$851.50 current observed labor cost',
     variant: 'copper',
   },
   {
     label: 'Location punch exceptions',
-    value: 123,
+    value: 138,
     description: 'location violations',
-    note: '13 unique employees totaling 700.82 miles',
+    note: '21 unique employees totaling 755.61 miles',
     variant: 'default',
   },
   {
     label: 'Location punch exposure',
-    value: '$8,602.00',
+    value: '$11,700.96',
     description: 'annualized labor cost projection',
-    note: '$716.83 current observed labor cost',
+    note: '$975.08 current observed labor cost',
     variant: 'default',
   },
 ] as const
 
 const combinedExposureCard = {
-  label: 'Combined known-rate exposure',
-  value: '$9,755.81',
-  description: 'annualized labor cost projection',
-  note: 'Meal known-rate + location estimate',
+  label: 'Total labor cost exposure',
+  value: '$13,427.61',
+  note: 'annualized meal + location cost projection',
   variant: 'highlight',
 } as const
+
+const studySummary = [
+  {
+    label: 'Meal-period known cost',
+    value: '$851.50',
+    study: 'meal',
+  },
+  {
+    label: 'Meal-period annualized cost projection',
+    value: '$1,726.65',
+    study: 'meal',
+  },
+  {
+    label: 'Location known labor cost',
+    value: '$975.08',
+    study: 'location',
+  },
+  {
+    label: 'Location annualized labor cost projection',
+    value: '$11,700.96',
+    study: 'location',
+  },
+] as const
+
+const calculationAssumptions = [
+  {
+    title: 'Meal-period cost projection',
+    description: 'Recorded one-hour events × hourly rate × 365 / 180 days.',
+  },
+  {
+    title: 'Location to time and cost conversion',
+    description: 'Actual miles ÷ 25 mph × 60, rounded per incident; annualized at 12×.',
+  }
+] as const
 </script>
 
 <template>
@@ -53,11 +85,11 @@ const combinedExposureCard = {
           Executive Summary
         </h1>
         <h1 class="text-[2rem] mb-4 font-extrabold tracking-[0.14em] uppercase text-ink">
-          Cost Review Dashboard
+          Exposure Cost Dashboard
         </h1>
         <p class="max-w-[780px] text-[0.82rem] leading-[1.7] text-slate-green sm:text-[0.9rem]">
           A unified view of meal-period and location-based punch exceptions, designed to turn audit
-          activity into a clearer conversation about employee abuse and improvements.
+          activity into a clearer conversation about employee abuse and unnecessary costs.
         </p>
       </div>
       <div class="flex w-full flex-col items-start gap-5 sm:w-auto sm:shrink-0 sm:flex-row sm:items-center sm:gap-6">
@@ -103,6 +135,48 @@ const combinedExposureCard = {
         align="center"
         v-bind="combinedExposureCard"
       />
+    </section>
+
+    <section
+      aria-label="Study summaries and methodology"
+      class="mb-[30px] grid grid-cols-1 gap-[18px] min-[901px]:grid-cols-[1.1fr_0.9fr]"
+    >
+      <DashboardPanel
+        title="At a glance"
+        description="Observed costs are separated from annualized management projections."
+      >
+        <dl class="grid grid-cols-1 gap-x-3.5 gap-y-[19px] min-[561px]:grid-cols-2">
+          <div
+            v-for="stat in studySummary"
+            :key="stat.label"
+            class="border-l-[3px] py-0.5 pl-3"
+            :class="stat.study === 'meal' ? 'border-burnt-copper' : 'border-forest-green'"
+          >
+            <dt class="text-[0.71rem] text-slate-green">{{ stat.label }}</dt>
+            <dd class="mt-1 text-[1.22rem] font-[650] tracking-[-0.035em] text-ink tabular-nums">
+              {{ stat.value }}
+            </dd>
+          </div>
+        </dl>
+      </DashboardPanel>
+
+      <DashboardPanel
+        title="Calculation assumptions"
+        description="Annualization estimations are directly calculated based on the audit period provided."
+      >
+        <dl class="grid pt-[18px] gap-[6px]">
+          <div
+            v-for="assumption in calculationAssumptions"
+            :key="assumption.title"
+            class="border-b border-slate-green/17 pb-[11px] last:border-0 last:pb-0"
+          >
+            <dt class="text-[0.77rem] font-bold text-ink">{{ assumption.title }}</dt>
+            <dd class="mt-[3px] text-[0.73rem] text-slate-green">
+              {{ assumption.description }}
+            </dd>
+          </div>
+        </dl>
+      </DashboardPanel>
     </section>
   </main>
 </template>

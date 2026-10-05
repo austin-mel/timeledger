@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import AppHeader from '../components/AppHeader.vue'
-import LoginForm from '../components/LoginForm.vue'
+import { AppHeader, LoginForm } from '@/components'
 
 const router = useRouter()
 </script>
