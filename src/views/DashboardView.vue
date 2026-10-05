@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SvgIcon } from '@/assets'
-import { AppHeader, DashboardPanel, QuickViewCard } from '@/components'
+import { AppHeader, DashboardPanel, EmployeeTable, QuickViewCard } from '@/components'
 
 // Example values randomized once for the dashboard mockup.
 const quickViewCards = [
@@ -104,8 +104,8 @@ const calculationAssumptions = [
           <h2 class="mb-[5px] text-[0.68rem] font-bold tracking-[0.1em] text-ink uppercase">
             Current audit periods
           </h2>
-          <p>Meal: <time datetime="2025-12-26">Dec 26, 2025</time>–<time datetime="2026-06-23">Jun 23, 2026</time></p>
-          <p>Location: <time datetime="2026-05-25">May 25</time>–<time datetime="2026-06-23">Jun 23, 2026</time></p>
+          <p>Meal: <time datetime="2025-12-26">Dec 26, 2025</time> – <time datetime="2026-06-23">Jun 23, 2026</time><strong> (XX days)</strong></p>
+          <p>Location: <time datetime="2026-05-25">May 25</time> – <time datetime="2026-06-23">Jun 23, 2026</time><strong> (XX days)</strong></p>
         </div>
       </div>
     </header>
@@ -178,5 +178,6 @@ const calculationAssumptions = [
         </dl>
       </DashboardPanel>
     </section>
+    <EmployeeTable />
   </main>
 </template>

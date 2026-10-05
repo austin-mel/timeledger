@@ -1,4 +1,5 @@
 export * from './AppHeader'
 export * from './DashboardPanel'
+export * from './EmployeeTable'
 export * from './LoginForm'
 export * from './QuickViewCard'

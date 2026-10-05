@@ -3,7 +3,7 @@ withDefaults(
   defineProps<{
     label: string
     value: string | number
-    description: string
+    description?: string
     note?: string
     variant?: 'default' | 'copper' | 'highlight'
     align?: 'left' | 'center'
@@ -39,7 +39,7 @@ withDefaults(
     >
       {{ value }}
     </p>
-    <p class="text-xs">{{ description }}</p>
+    <p v-if="description" class="text-xs">{{ description }}</p>
     <p v-if="note" class="mt-[15px] text-[0.67rem]">{{ note }}</p>
   </article>
 </template>
