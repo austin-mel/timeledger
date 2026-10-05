@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="144" height="28" viewBox="0 0 144 28" fill="none" role="img" aria-labelledby="title">
+  <title id="title">timeledger</title>
+  <rect x="1.5" y="1.5" width="25" height="25" rx="7" stroke="#236149" stroke-width="2" />
+  <path d="M14 7v8h6" stroke="#236149" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="14" cy="15" r="2" fill="#236149" />
+  <text x="38" y="21" fill="#141A17" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="20" font-weight="800" letter-spacing="-0.9">timeledger<tspan fill="#236149">.</tspan></text>
+</svg>

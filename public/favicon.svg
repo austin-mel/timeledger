@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none" role="img" aria-labelledby="title">
+  <title id="title">timeledger icon</title>
+  <rect x="1.5" y="1.5" width="25" height="25" rx="7" stroke="#236149" stroke-width="2" />
+  <path d="M14 7v8h6" stroke="#236149" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="14" cy="15" r="2" fill="#236149" />
+</svg>
