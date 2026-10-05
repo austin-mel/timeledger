@@ -9,6 +9,9 @@ const titleId = useId()
 const searchId = useId()
 const auditTypeId = useId()
 const detailsId = useId()
+const tableId = useId()
+const pageSize = 20
+const currentPage = ref(1)
 const searchQuery = ref('')
 const auditType = ref<AuditType>('all')
 const selectedEmployeeName = ref<string | null>(null)
@@ -29,8 +32,18 @@ const filteredEmployees = computed(() => {
   })
 })
 
+watch([searchQuery, auditType], () => {
+  currentPage.value = 1
+})
+
+const totalPages = computed(() => Math.max(1, Math.ceil(filteredEmployees.value.length / pageSize)))
+const pageStart = computed(() => (currentPage.value - 1) * pageSize)
+const paginatedEmployees = computed(() =>
+  filteredEmployees.value.slice(pageStart.value, pageStart.value + pageSize),
+)
+
 watch(
-  filteredEmployees,
+  paginatedEmployees,
   (visibleEmployees) => {
     if (!visibleEmployees.some((employee) => employee.name === selectedEmployeeName.value)) {
       selectedEmployeeName.value = visibleEmployees[0]?.name ?? null
@@ -40,7 +53,7 @@ watch(
 )
 
 const selectedEmployee = computed(() =>
-  filteredEmployees.value.find((employee) => employee.name === selectedEmployeeName.value) ?? null,
+  paginatedEmployees.value.find((employee) => employee.name === selectedEmployeeName.value) ?? null,
 )
 </script>
 
@@ -55,7 +68,12 @@ const selectedEmployee = computed(() =>
           Employee exception directory
         </h2>
         <p role="status" class="mt-[5px] text-xs text-slate-green">
-          {{ filteredEmployees.length }} of {{ employees.length }} employees shown
+          <template v-if="filteredEmployees.length > 0">
+            Showing {{ pageStart + 1 }}–{{ pageStart + paginatedEmployees.length }} of
+            {{ filteredEmployees.length }} employees
+          </template>
+          <template v-else>No employees found</template>
+          <span v-if="filteredEmployees.length !== employees.length"> ({{ employees.length }} total)</span>
         </p>
         <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end">
           <div class="min-w-0 flex-1">
@@ -87,7 +105,7 @@ const selectedEmployee = computed(() =>
         </div>
       </header>
       <div class="overflow-x-auto">
-        <table :aria-labelledby="titleId" class="w-full min-w-[680px] border-collapse text-right tabular-nums">
+        <table :id="tableId" :aria-labelledby="titleId" class="w-full min-w-[680px] border-collapse text-right tabular-nums">
           <thead class="bg-charcoal-blue text-[0.6rem] tracking-[0.045em] whitespace-nowrap text-lavender-mist uppercase">
             <tr>
               <th scope="col" class="py-[13px] pr-3 pl-[22px] text-left font-[650]">Employee</th>
@@ -99,7 +117,7 @@ const selectedEmployee = computed(() =>
           </thead>
           <tbody class="text-[0.74rem] whitespace-nowrap text-ink">
             <tr
-              v-for="employee in filteredEmployees"
+              v-for="employee in paginatedEmployees"
               :key="employee.name"
               class="cursor-pointer border-t border-slate-green/17"
               :class="selectedEmployee?.name === employee.name ? 'bg-forest-green/10' : 'hover:bg-lavender-mist/60'"
@@ -134,6 +152,37 @@ const selectedEmployee = computed(() =>
           </tbody>
         </table>
       </div>
+      <nav
+        v-if="filteredEmployees.length > 0"
+        aria-label="Employee table pagination"
+        class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-green/17 px-5 py-4 sm:px-[22px]"
+      >
+        <p class="text-xs text-slate-green tabular-nums">
+          Page {{ currentPage }} of {{ totalPages }}
+        </p>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            :aria-controls="tableId"
+            aria-label="Previous page"
+            :disabled="currentPage === 1"
+            class="min-h-11 cursor-pointer rounded-lg border border-slate-green/20 px-3 py-2 text-xs font-semibold text-forest-green enabled:hover:bg-soft-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green disabled:cursor-not-allowed disabled:opacity-40"
+            @click="currentPage--"
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            :aria-controls="tableId"
+            aria-label="Next page"
+            :disabled="currentPage >= totalPages"
+            class="min-h-11 cursor-pointer rounded-lg border border-slate-green/20 px-3 py-2 text-xs font-semibold text-forest-green enabled:hover:bg-soft-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green disabled:cursor-not-allowed disabled:opacity-40"
+            @click="currentPage++"
+          >
+            Next
+          </button>
+        </div>
+      </nav>
     </section>
     <SelectedEmployeeCard :id="detailsId" :employee="selectedEmployee" />
   </div>
