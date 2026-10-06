@@ -2,6 +2,8 @@
 // Shared Material icon paths, following csc131.mock.front-end's SVGIcons pattern.
 // The MUI Logout path retains its license in LICENSE.mui.
 const paths = {
+  dashboard: 'M3 3h8v8H3V3Zm10 0h8v5h-8V3ZM3 13h8v8H3v-8Zm10-3h8v11h-8V10Z',
+  auditList: 'M4 3h16v18H4V3Zm3 4v2h10V7H7Zm0 4v2h10v-2H7Zm0 4v2h7v-2H7Z',
   add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z',
   arrowBack: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.42-1.41L7.83 13H20v-2Z',
   arrowForward: 'm12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8Z',

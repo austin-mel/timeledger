@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { SvgIcon } from '@/assets'
-import { AppHeader, DashboardPanel, EmployeeTable, QuickViewCard } from '@/components'
+import { AppHeader, AuditPageHeader, DashboardPanel, EmployeeTable, QuickViewCard } from '@/components'
 
 // Example values randomized once for the dashboard mockup.
 const quickViewCards = [
@@ -79,36 +78,11 @@ const calculationAssumptions = [
 <template>
   <AppHeader />
   <main class="mx-auto w-full max-w-[1560px] flex-1 px-5 pt-7 pb-8 sm:px-10 sm:pt-9">
-    <header class="mb-[25px] flex flex-col items-start gap-5 min-[901px]:flex-row min-[901px]:items-center min-[901px]:justify-between min-[901px]:gap-8">
-      <div>
-        <h1 class="text-[0.9rem] font-extrabold tracking-[0.14em] text-forest-green uppercase">
-          Executive Summary
-        </h1>
-        <h1 class="text-[2rem] mb-4 font-extrabold tracking-[0.14em] uppercase text-ink">
-          Exposure Cost Dashboard
-        </h1>
-        <p class="max-w-[780px] text-[0.82rem] leading-[1.7] text-slate-green sm:text-[0.9rem]">
-          A unified view of meal-period and location-based punch exceptions, designed to turn audit
-          activity into a clearer conversation about employee abuse and unnecessary costs.
-        </p>
-      </div>
-      <div class="flex w-full flex-col items-start gap-5 sm:w-auto sm:shrink-0 sm:flex-row sm:items-center sm:gap-6">
-        <button
-          type="button"
-          class="inline-flex min-h-18 w-full items-center justify-center gap-2 uppercase cursor-pointer rounded-lg bg-forest-green px-6 py-4 text-base font-semibold whitespace-nowrap text-lavender-mist shadow-sm shadow-deep-pine/10 hover:bg-deep-pine focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-green motion-safe:transition-colors sm:w-auto"
-        >
-          <SvgIcon name="uploadFile" class="size-6" />
-          Upload audit file
-        </button>
-        <div class="shrink-0 border-l-[3px] border-forest-green py-1 pl-[18px] text-xs leading-[1.8] text-slate-green">
-          <h2 class="mb-[5px] text-[0.68rem] font-bold tracking-[0.1em] text-ink uppercase">
-            Current audit periods
-          </h2>
-          <p>Meal: <time datetime="2025-12-26">Dec 26, 2025</time> – <time datetime="2026-06-23">Jun 23, 2026</time><strong> (XX days)</strong></p>
-          <p>Location: <time datetime="2026-05-25">May 25</time> – <time datetime="2026-06-23">Jun 23, 2026</time><strong> (XX days)</strong></p>
-        </div>
-      </div>
-    </header>
+    <AuditPageHeader
+      eyebrow="Executive Summary"
+      title="Exposure Cost Dashboard"
+      description="A unified view of meal-period and location-based punch exceptions, designed to turn audit activity into a clearer conversation about employee abuse and unnecessary costs."
+    />
 
     <section
       aria-label="Data-use note"

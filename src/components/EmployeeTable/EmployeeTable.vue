@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, useId, watch } from 'vue'
+import { SvgIcon } from '@/assets'
 import { SelectedEmployeeCard } from '../SelectedEmployeeCard'
 import { employees } from '@/data'
 
@@ -155,33 +156,46 @@ const selectedEmployee = computed(() =>
       <nav
         v-if="filteredEmployees.length > 0"
         aria-label="Employee table pagination"
-        class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-green/17 px-5 py-4 sm:px-[22px]"
+        class="flex flex-col items-center justify-center gap-3 border-t border-slate-green/17 px-5 py-4 sm:px-[22px]"
       >
-        <p class="text-xs text-slate-green tabular-nums">
-          Page {{ currentPage }} of {{ totalPages }}
-        </p>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center justify-center gap-2">
           <button
             type="button"
             :aria-controls="tableId"
             aria-label="Previous page"
             :disabled="currentPage === 1"
-            class="min-h-11 cursor-pointer rounded-lg border border-slate-green/20 px-3 py-2 text-xs font-semibold text-forest-green enabled:hover:bg-soft-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green disabled:cursor-not-allowed disabled:opacity-40"
+            class="flex size-11 cursor-pointer items-center justify-center rounded-lg border border-slate-green/20 text-forest-green enabled:hover:bg-soft-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green disabled:cursor-not-allowed disabled:opacity-40"
             @click="currentPage--"
           >
-            Previous
+            <SvgIcon name="arrowBack" class="size-5" />
+          </button>
+          <button
+            v-for="page in totalPages"
+            :key="page"
+            type="button"
+            :aria-controls="tableId"
+            :aria-label="`Page ${page}`"
+            :aria-current="currentPage === page ? 'page' : undefined"
+            class="flex size-11 cursor-pointer items-center justify-center rounded-lg border text-sm font-semibold tabular-nums focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green"
+            :class="currentPage === page ? 'border-forest-green bg-forest-green text-lavender-mist' : 'border-slate-green/20 text-forest-green hover:bg-soft-sage'"
+            @click="currentPage = page"
+          >
+            {{ page }}
           </button>
           <button
             type="button"
             :aria-controls="tableId"
             aria-label="Next page"
             :disabled="currentPage >= totalPages"
-            class="min-h-11 cursor-pointer rounded-lg border border-slate-green/20 px-3 py-2 text-xs font-semibold text-forest-green enabled:hover:bg-soft-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green disabled:cursor-not-allowed disabled:opacity-40"
+            class="flex size-11 cursor-pointer items-center justify-center rounded-lg border border-slate-green/20 text-forest-green enabled:hover:bg-soft-sage focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green disabled:cursor-not-allowed disabled:opacity-40"
             @click="currentPage++"
           >
-            Next
+            <SvgIcon name="arrowForward" class="size-5" />
           </button>
         </div>
+        <p class="text-xs text-slate-green tabular-nums">
+          Page {{ currentPage }} of {{ totalPages }}
+        </p>
       </nav>
     </section>
     <SelectedEmployeeCard :id="detailsId" :employee="selectedEmployee" />

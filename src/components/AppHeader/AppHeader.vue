@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { SvgIcon, TimeledgerLogo } from '@/assets'
+import { useDemoSession } from '@/composables/useDemoSession'
 
-const route = useRoute()
 const router = useRouter()
+const { currentProfile, logout } = useDemoSession()
+
+function handleLogout() {
+  logout()
+  router.replace({ name: 'login' })
+}
 </script>
 
 <template>
@@ -21,10 +27,10 @@ const router = useRouter()
         Workforce intelligence
       </p>
       <button
-        v-if="route.name !== 'login'"
+        v-if="currentProfile"
         type="button"
         class="ml-auto inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg border border-forest-green/25 px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-700 hover:text-lavender-mist focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-green motion-safe:transition-colors md:ml-0"
-        @click="router.replace({ name: 'login' })"
+        @click="handleLogout"
       >
         <SvgIcon name="logout" class="size-5" />
         Logout
